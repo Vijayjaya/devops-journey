@@ -1,4 +1,3 @@
-#!/bin/bash
 pipeline {
     agent any
 
@@ -18,6 +17,33 @@ pipeline {
         stage('Deploy') {
             steps {
                 echo 'Deploying application'
+            }
+        }
+    }
+}
+pipeline {
+    agent any
+
+    environment {
+        APP_NAME = "DevOpsApp"
+    }
+
+    stages {
+        stage('Env') {
+            steps {
+                sh 'echo App Name is $APP_NAME'
+            }
+        }
+
+        stage('Build') {
+            steps {
+                echo "Building ${APP_NAME}"
+            }
+        }
+
+        stage('Test') {
+            steps {
+                echo "Testing ${APP_NAME}"
             }
         }
     }
